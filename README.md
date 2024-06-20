@@ -4,7 +4,6 @@
 ## Repository: https://github.com/ryuuzaki42/FFsubsync_AppImage
 
 ## Usage
-
 ```
 # Base:
     ./FFsubsync*_JB.AppImage ffs
@@ -14,16 +13,20 @@
     ./FFsubsync*_JB.AppImage ffsubsync
 
 # Example:
-    ./FFsubsync*_JB.AppImage ffs video.mp4 -i unsynchronized.srt -o synchronized.srt"
+    # Sync from video file
+        ./FFsubsync*_JB.AppImage ffs video.mp4 -i unsynchronized.srt -o synchronized.srt"
 
-    ./FFsubsync*_JB.AppImage ffsubsync reference.srt -i unsynchronized.srt -o synchronized.srt"
+        ./FFsubsync*_JB.AppImage ffs video.mkv -i unsynchronized.srt -o synchronized.srt"
 
-# Help:
-    ./FFsubsync*_JB.AppImage ffs
+    # Sync from subtitle reference file
+        ./FFsubsync*_JB.AppImage ffsubsync reference.srt -i unsynchronized.srt -o synchronized.srt"
 
-    ./FFsubsync*_JB.AppImage subsync
+# For help:
+    ./FFsubsync*_JB.AppImage ffs -h
 
-    ./FFsubsync*_JB.AppImage ffsubsync
+    ./FFsubsync*_JB.AppImage subsync -h
+
+    ./FFsubsync*_JB.AppImage ffsubsync -h
 ```
 
 ---
