@@ -37,19 +37,19 @@ jobs:
         ./"$fileName" --appimage-extract
         ls -lah
 
-    - name: Install Autosubsync and update pip
+    - name: Install ffsubsync and update pip
       run: |
         set -x
         cd squashfs-root/opt/python3*/bin/
         pwd
         ls -lah
 
-        ./pip3.* install autosubsync
+        ./pip3.* install ffsubsync
         ./python3.* -m pip install --upgrade pip
 
     - name: Make AppImage
       run: |
-        version_Autosubsync="1.0.1"
+        version_ffsubsync="0.4.25"
 
         set -x
         cd squashfs-root/
@@ -61,15 +61,15 @@ jobs:
 
         #find . | grep ".png"
         #find . | grep ".svg"
-        mv python.png Autosubsync.png
+        mv python.png ffsubsync.png
 
         #find . | grep ".desktop"
-        mv python*.desktop Autosubsync.desktop
-        cat Autosubsync.desktop
+        mv python*.desktop ffsubsync.desktop
+        cat ffsubsync.desktop
 
-        sed -i "s/Name=.*/Name=Autosubsync-$version_Autosubsync/" Autosubsync.desktop
-        sed -i "s/Icon=python/Icon=Autosubsync/" Autosubsync.desktop
-        cat Autosubsync.desktop
+        sed -i "s/Name=.*/Name=ffsubsync-$version_ffsubsync/" ffsubsync.desktop
+        sed -i "s/Icon=python/Icon=ffsubsync/" ffsubsync.desktop
+        cat ffsubsync.desktop
 
         pwd
         ls -lah
@@ -82,8 +82,8 @@ jobs:
 
         ARCH=x86_64 ./appimagetool-x86_64.AppImage squashfs-root/
         ls -lah
-        
-        fileName=$(ls Autosubsync*.AppImage)
+
+        fileName=$(ls ffsubsync*.AppImage)
         echo "fileName: $fileName"
         fileNameNew=$(echo "$fileName" | sed 's/.AppImage//')
         mv "$fileName" "${fileNameNew}-1_JB.AppImage"
@@ -99,11 +99,11 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          file: "Autosubsync*.AppImage; Autosubsync*.md5"
+          file: "ffsubsync*.AppImage; ffsubsync*.md5"
           #delete_file: "random-name-*.txt;random-*.txt"
           release_id: ${{ steps.create_release.outputs.id }}
           #overwrite: true
           verbose: true
           #tags: true
           draft: false
-          default_release_name: "Autosubsync v in AppImage"
+          default_release_name: "ffsubsync v in AppImage"
