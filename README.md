@@ -12,14 +12,14 @@
 
     ./FFsubsync*_JB.AppImage ffsubsync
 
-# Example:
+# Examples:
     # Sync from video file
-        ./FFsubsync*_JB.AppImage ffs video.mp4 -i unsynchronized.srt -o synchronized.srt"
+        ./FFsubsync*_JB.AppImage ffs video.mp4 -i unsynchronized.srt -o synchronized.srt
 
-        ./FFsubsync*_JB.AppImage ffs video.mkv -i unsynchronized.srt -o synchronized.srt"
+        ./FFsubsync*_JB.AppImage ffs video.mkv -i unsynchronized.srt -o synchronized.srt
 
     # Sync from subtitle reference file
-        ./FFsubsync*_JB.AppImage ffsubsync reference.srt -i unsynchronized.srt -o synchronized.srt"
+        ./FFsubsync*_JB.AppImage ffsubsync reference.srt -i unsynchronized.srt -o synchronized.srt
 
 # For help:
     ./FFsubsync*_JB.AppImage ffs -h
