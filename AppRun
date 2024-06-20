@@ -1,0 +1,33 @@
+#!/bin/bash
+echo -e "\nRunning: autosubsync $@"
+
+HERE="$(dirname "$(readlink -f "${0}")")"
+
+count_Paramets=$#
+echo -e "\ncount_Paramets: $count_Paramets"
+all_Parameters=$@
+echo -e "all_Parameters: $all_Parameters\n"
+
+if [ $count_Paramets -lt 3 ]; then # If has less then 3 parameter, like --help
+    "$HERE"/opt/python3.*/bin/autosubsync "$all_Parameters"
+else
+    #last_3_Paramets=$(echo "$all_parameters" | rev | cut -d ' ' -f1-3 | rev)
+    #echo -e "last_3_Paramets: $last_3_Paramets\n"
+
+    others_Paramets=$(echo "$all_Parameters" | rev | cut -d ' ' -f4- | rev)
+    echo -e "others_Paramets: $others_Paramets\n"
+
+    # Add the current directory, $PWD, to the 3 last parameters
+    video_file=$PWD/${@: -3:1} # Third last parameter
+    subtitle_file=$PWD/${@: -2:1} # Second last parameter
+    output_file=$PWD/${@: -1:1} # Last parameter
+
+    echo -e " - Final Parameters -\nothers_Paramets: $others_Paramets\nvideo_file:      $video_file"
+    echo -e "subtitle_file:   $subtitle_file\noutput_file:     $output_file\n"
+
+    if [ "$others_Paramets" == '' ]; then
+        "$HERE"/opt/python3.*/bin/autosubsync "$video_file" "$subtitle_file" "$output_file"
+    else
+        "$HERE"/opt/python3.*/bin/autosubsync "$others_Paramets" "$video_file" "$subtitle_file" "$output_file"
+    fi
+fi

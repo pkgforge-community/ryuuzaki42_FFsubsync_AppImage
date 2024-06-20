@@ -1,0 +1,109 @@
+name: Create new realease
+
+on:
+  push:
+    branches:
+      - "**"
+    tags:
+      - "!**"
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@main
+    - name: Install fuse and libfuse2
+      run: sudo apt install fuse libfuse2
+
+    - name: Get appimagetool
+      run: |
+        set -x
+        wget https://github.com/AppImage/AppImageKit/releases/download/13/appimagetool-x86_64.AppImage
+        chmod +x appimagetool-x86_64.AppImage
+        ls -lah
+
+    - name: Get Pyhton AppImage
+      run: |
+        set -x
+        #wget https://github.com/niess/python-appimage/releases/download/python3.9/python3.9.16-cp39-cp39-manylinux_2_24_x86_64.AppImage
+        #chmod +x python3.9.16-cp39-cp39-manylinux_2_24_x86_64.AppImage
+        #./python3.9.16-cp39-cp39-manylinux_2_24_x86_64.AppImage --appimage-extract
+
+        #wget https://github.com/niess/python-appimage/releases/download/python3.11/python3.11.4-cp311-cp311-manylinux_2_28_x86_64.AppImage
+        wget https://github.com/niess/python-appimage/releases/download/python3.12/python3.12.3-cp312-cp312-manylinux_2_28_x86_64.AppImage
+        fileName=$(ls python3*.AppImage)
+        chmod +x "$fileName"
+        ./"$fileName" --appimage-extract
+        ls -lah
+
+    - name: Install Autosubsync and update pip
+      run: |
+        set -x
+        cd squashfs-root/opt/python3*/bin/
+        pwd
+        ls -lah
+
+        ./pip3.* install autosubsync
+        ./python3.* -m pip install --upgrade pip
+
+    - name: Make AppImage
+      run: |
+        version_Autosubsync="1.0.1"
+
+        set -x
+        cd squashfs-root/
+        pwd
+        ls -lah
+
+        #rm -v python* .DirIcon AppRun
+        rm -v .DirIcon AppRun
+
+        #find . | grep ".png"
+        #find . | grep ".svg"
+        mv python.png Autosubsync.png
+
+        #find . | grep ".desktop"
+        mv python*.desktop Autosubsync.desktop
+        cat Autosubsync.desktop
+
+        sed -i "s/Name=.*/Name=Autosubsync-$version_Autosubsync/" Autosubsync.desktop
+        sed -i "s/Icon=python/Icon=Autosubsync/" Autosubsync.desktop
+        cat Autosubsync.desktop
+
+        pwd
+        ls -lah
+
+        cd ../
+        mv AppRun squashfs-root/
+
+        mv README.md squashfs-root/
+        ls -lah squashfs-root/
+
+        ARCH=x86_64 ./appimagetool-x86_64.AppImage squashfs-root/
+        ls -lah
+        
+        fileName=$(ls Autosubsync*.AppImage)
+        echo "fileName: $fileName"
+        fileNameNew=$(echo "$fileName" | sed 's/.AppImage//')
+        mv "$fileName" "${fileNameNew}-1_JB.AppImage"
+        md5sum "${fileNameNew}-1_JB.AppImage" > "${fileNameNew}-1_JB.AppImage.md5"
+        ls -lah
+
+    # Build - Error: Resource not accessible by integration
+    # Change Settings -> Actions -> General -> Workflow Permissions to allow read and write:
+    # https://github.com/actions/first-interaction/issues/10#issuecomment-1506118886
+
+    # https://github.com/marketplace/actions/upload-to-github-release
+    - uses: xresloader/upload-to-github-release@main
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          file: "Autosubsync*.AppImage; Autosubsync*.md5"
+          #delete_file: "random-name-*.txt;random-*.txt"
+          release_id: ${{ steps.create_release.outputs.id }}
+          #overwrite: true
+          verbose: true
+          #tags: true
+          draft: false
+          default_release_name: "Autosubsync v in AppImage"
