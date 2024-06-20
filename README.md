@@ -4,17 +4,27 @@
 ## Repository: https://github.com/ryuuzaki42/FFsubsync_AppImage
 
 ## Usage
-- Ainda para corrigir para o FFsubsync
 
 ```
-./FFsubsync*_JB.AppImage [input movie] [input subtitles] [output subs]
+# Base:
+    ./FFsubsync*_JB.AppImage ffs
 
-# for example
-./FFsubsync*_JB.AppImage plan-9-from-outer-space.avi \
-  plan-9-out-of-sync-subs.srt \
-  plan-9-subtitles-synced.srt
+    ./FFsubsync*_JB.AppImage subsync
+
+    ./FFsubsync*_JB.AppImage ffsubsync
+
+# Example:
+    ./FFsubsync*_JB.AppImage ffs video.mp4 -i unsynchronized.srt -o synchronized.srt"
+
+    ./FFsubsync*_JB.AppImage ffsubsync reference.srt -i unsynchronized.srt -o synchronized.srt"
+
+# Help:
+    ./FFsubsync*_JB.AppImage ffs
+
+    ./FFsubsync*_JB.AppImage subsync
+
+    ./FFsubsync*_JB.AppImage ffsubsync
 ```
-See `./FFsubsync*_JB.AppImage --help` for more details.
 
 ---
 https://github.com/smacke/ffsubsync
