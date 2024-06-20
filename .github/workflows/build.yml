@@ -37,7 +37,7 @@ jobs:
         ./"$fileName" --appimage-extract
         ls -lah
 
-    - name: Install ffsubsync and update pip
+    - name: Install FFsubsync and update pip
       run: |
         set -x
         cd squashfs-root/opt/python3*/bin/
@@ -49,7 +49,7 @@ jobs:
 
     - name: Make AppImage
       run: |
-        version_ffsubsync="0.4.25"
+        version_FFsubsync="0.4.25"
 
         set -x
         cd squashfs-root/
@@ -61,15 +61,15 @@ jobs:
 
         #find . | grep ".png"
         #find . | grep ".svg"
-        mv python.png ffsubsync.png
+        mv python.png FFsubsync.png
 
         #find . | grep ".desktop"
-        mv python*.desktop ffsubsync.desktop
-        cat ffsubsync.desktop
+        mv python*.desktop FFsubsync.desktop
+        cat FFsubsync.desktop
 
-        sed -i "s/Name=.*/Name=ffsubsync-$version_ffsubsync/" ffsubsync.desktop
-        sed -i "s/Icon=python/Icon=ffsubsync/" ffsubsync.desktop
-        cat ffsubsync.desktop
+        sed -i "s/Name=.*/Name=FFsubsync-$version_FFsubsync/" FFsubsync.desktop
+        sed -i "s/Icon=python/Icon=FFsubsync/" FFsubsync.desktop
+        cat FFsubsync.desktop
 
         pwd
         ls -lah
@@ -83,7 +83,7 @@ jobs:
         ARCH=x86_64 ./appimagetool-x86_64.AppImage squashfs-root/
         ls -lah
 
-        fileName=$(ls ffsubsync*.AppImage)
+        fileName=$(ls FFsubsync*.AppImage)
         echo "fileName: $fileName"
         fileNameNew=$(echo "$fileName" | sed 's/.AppImage//')
         mv "$fileName" "${fileNameNew}-1_JB.AppImage"
@@ -99,11 +99,11 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          file: "ffsubsync*.AppImage; ffsubsync*.md5"
+          file: "FFsubsync*.AppImage; FFsubsync*.md5"
           #delete_file: "random-name-*.txt;random-*.txt"
           release_id: ${{ steps.create_release.outputs.id }}
           #overwrite: true
           verbose: true
           #tags: true
           draft: false
-          default_release_name: "ffsubsync v in AppImage"
+          default_release_name: "FFsubsync V in AppImage"
