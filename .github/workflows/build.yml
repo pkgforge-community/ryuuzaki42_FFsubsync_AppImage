@@ -30,7 +30,7 @@ jobs:
 
         wget -q "https://github.com/probonopd/go-appimage/releases/download/continuous/appimagetool-$version_go_appimage-x86_64.AppImage" -O appimagetool-x86_64.AppImage
         chmod +x appimagetool-x86_64.AppImage
-        ls -lah
+        pwd; ls -lah
 
     - name: Get Pyhton AppImage
       run: |
@@ -50,8 +50,7 @@ jobs:
       run: |
         set -x
         cd squashfs-root/opt/python3*/bin/
-        pwd
-        ls -lah
+        pwd; ls -lah
 
         ./pip3.* install ffsubsync
         ./python3.* -m pip install --upgrade pip
@@ -62,8 +61,7 @@ jobs:
 
         set -x
         cd squashfs-root/
-        pwd
-        ls -lah
+        pwd; ls -lah
 
         #rm -v python* .DirIcon AppRun
         rm -v .DirIcon AppRun
@@ -80,8 +78,7 @@ jobs:
         sed -i "s/Icon=python/Icon=FFsubsync/" FFsubsync.desktop
         cat FFsubsync.desktop
 
-        pwd
-        ls -lah
+        pwd; ls -lah
 
         cd ../
         mv AppRun squashfs-root/
@@ -94,14 +91,14 @@ jobs:
 
         #ARCH=x86_64 ./appimagetool-x86_64.AppImage squashfs-root/
         ARCH=x86_64 VERSION="${version_FFsubsync}-1_JB" ./appimagetool-x86_64.AppImage squashfs-root/
-        ls -lah
+        pwd; ls -lah
 
         fileName=$(ls FFsubsync*.AppImage)
         echo "fileName: $fileName"
         fileNameNew=$(echo "$fileName" | sed 's/.AppImage//')
         mv "$fileName" "${fileNameNew}-1_JB.AppImage"
         md5sum "${fileNameNew}-1_JB.AppImage" > "${fileNameNew}-1_JB.AppImage.md5"
-        ls -lah
+        pwd; ls -lah
 
     # Build - Error: Resource not accessible by integration
     # Change Settings -> Actions -> General -> Workflow Permissions to allow read and write:
@@ -112,7 +109,7 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          file: "FFsubsync*.AppImage; FFsubsync*.md5"
+          file: "FFsubsync*.AppImage; FFsubsync*.zsync; FFsubsync*.md5"
           #delete_file: "random-name-*.txt;random-*.txt"
           release_id: ${{ steps.create_release.outputs.id }}
           #overwrite: true
