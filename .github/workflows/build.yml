@@ -74,7 +74,7 @@ jobs:
         mv python*.desktop FFsubsync.desktop
         cat FFsubsync.desktop
 
-        sed -i "s/Name=.*/Name=FFsubsync-$version_FFsubsync/" FFsubsync.desktop
+        #sed -i "s/Name=.*/Name=FFsubsync-$version_FFsubsync/" FFsubsync.desktop
         sed -i "s/Icon=python/Icon=FFsubsync/" FFsubsync.desktop
         cat FFsubsync.desktop
 
