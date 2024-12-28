@@ -2,7 +2,6 @@
 # FFsubsync_AppImage
 
 ## Repository: https://github.com/ryuuzaki42/FFsubsync_AppImage
-    FFsubsync: 0.4.27
 
 ## Usage
 ```
@@ -12,6 +11,8 @@
     ./FFsubsync*_JB.AppImage subsync
 
     ./FFsubsync*_JB.AppImage ffsubsync
+
+    ./FFsubsync*_JB.AppImage ffsubsync -v
 
 # Examples:
     # Sync from video file
@@ -28,6 +29,13 @@
     ./FFsubsync*_JB.AppImage subsync -h
 
     ./FFsubsync*_JB.AppImage ffsubsync -h
+
+# For version:
+    ./FFsubsync*_JB.AppImage ffs -v
+
+    ./FFsubsync*_JB.AppImage subsync -v
+
+    ./FFsubsync*_JB.AppImage ffsubsync -v
 ```
 
 ---
