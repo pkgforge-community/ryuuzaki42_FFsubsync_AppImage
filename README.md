@@ -2,7 +2,7 @@
 # FFsubsync_AppImage
 
 ## Repository: https://github.com/ryuuzaki42/FFsubsync_AppImage
-     FFsubsync: 0.4.28
+     FFsubsync: 0.4.29
 
 ## Usage
 ```
