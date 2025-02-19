@@ -54,7 +54,7 @@ jobs:
     - name: Make AppImage
       run: |
         set -x
-        version=$(grep -o "Zotero:.*" README.md | cut -d ' ' -f2)
+        version=$(grep -o "FFsubsync:.*" README.md | cut -d ' ' -f2)
         echo "FFsubsync version: $version"
 
         cd squashfs-root/
