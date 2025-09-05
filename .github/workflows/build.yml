@@ -36,7 +36,7 @@ jobs:
       run: |
         set -x
         #wget https://github.com/niess/python-appimage/releases/download/python3.9/python3.9.19-cp39-cp39-manylinux1_x86_64.AppImage
-        wget https://github.com/niess/python-appimage/releases/download/python3.13/python3.13.7-cp313-cp313-manylinux2014_x86_64.AppImage
+        wget https://github.com/niess/python-appimage/releases/download/python3.13/python3.13.7-cp313-cp313-manylinux_2_28_x86_64.AppImage
 
         fileName=$(ls python3*.AppImage)
         chmod +x "$fileName"
