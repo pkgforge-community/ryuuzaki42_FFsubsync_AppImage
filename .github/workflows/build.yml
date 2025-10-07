@@ -32,7 +32,7 @@ jobs:
         mkdir build/ 
         mkdir glibc-2.33-install/
         cd build/
-        ~/glibc/glibc-2.32/configure --prefix=$HOME/glibc/glibc-2.33-install
+        ~/glibc/glibc-2.33/configure --prefix=$HOME/glibc/glibc-2.33-install
         make
         make install
 
