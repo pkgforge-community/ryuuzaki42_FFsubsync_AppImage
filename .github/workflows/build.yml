@@ -54,7 +54,10 @@ jobs:
         cd squashfs-root/opt/python3*/bin/
         pwd; ls -lah
 
+        ./pip3.* install webrtcvad
+
         ./pip3.* install ffsubsync
+
         ./python3.* -m pip install --upgrade pip
 
     - name: Make AppImage
