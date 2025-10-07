@@ -21,6 +21,24 @@ jobs:
     - name: Install fuse and libfuse2
       run: sudo apt install fuse libfuse2
 
+    - name: Install Glibc 2.33
+      run: |
+        set -x
+
+        # https://askubuntu.com/questions/1345342/how-to-install-glibc-2-32-when-i-already-have-glibc2-31
+        mkdir $HOME/glibc/ && cd $HOME/glibc
+        wget https://ftp.gnu.org/gnu/glibc/glibc-2.33.tar.gz
+        tar -xvzf glibc-2.33.tar.gz
+        mkdir build/ 
+        mkdir glibc-2.33-install/
+        cd build/
+        ~/glibc/glibc-2.32/configure --prefix=$HOME/glibc/glibc-2.33-install
+        make
+        make install
+
+        ~/glibc/glibc-2.33-install/bin/ldd --version
+        pwd; ls -lah
+
     - name: Get appimagetool
       run: |
         set -x
@@ -54,9 +72,7 @@ jobs:
         cd squashfs-root/opt/python3*/bin/
         pwd; ls -lah
 
-        ./pip3.* install webrtcvad
         ldd --version
-        exit
 
         ./pip3.* install ffsubsync
 
