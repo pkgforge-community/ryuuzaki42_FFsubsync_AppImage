@@ -55,6 +55,8 @@ jobs:
         pwd; ls -lah
 
         ./pip3.* install webrtcvad
+        ldd --version
+        exit
 
         ./pip3.* install ffsubsync
 
