@@ -21,25 +21,11 @@ jobs:
     - name: Install fuse and libfuse2
       run: sudo apt install fuse libfuse2
 
-    - name: Install Glibc 2.33
+    - name: Download conty
       run: |
         set -x
-
-        sudo apt install build-essential
-        sudo apt install libstdc++6
-
-        # https://askubuntu.com/questions/1345342/how-to-install-glibc-2-32-when-i-already-have-glibc2-31
-        mkdir $HOME/glibc/ && cd $HOME/glibc
-        wget https://ftp.gnu.org/gnu/glibc/glibc-2.33.tar.gz
-        tar -xvzf glibc-2.33.tar.gz
-        mkdir build/ 
-        mkdir glibc-2.33-install/
-        cd build/
-        ~/glibc/glibc-2.33/configure --prefix=$HOME/glibc/glibc-2.33-install
-        make
-        make install
-
-        ~/glibc/glibc-2.33-install/bin/ldd --version
+        wget https://github.com/Kron4ek/Conty/releases/download/1.18.6/conty.sh
+        chmod +x conty.sh
         pwd; ls -lah
 
     - name: Get appimagetool
@@ -57,11 +43,11 @@ jobs:
       run: |
         set -x
         # Ok
-        wget https://github.com/niess/python-appimage/releases/download/python3.9/python3.9.19-cp39-cp39-manylinux1_x86_64.AppImage                
+        #wget https://github.com/niess/python-appimage/releases/download/python3.9/python3.9.19-cp39-cp39-manylinux1_x86_64.AppImage                
         #wget https://github.com/niess/python-appimage/releases/download/python3.10/python3.10.6-cp310-cp310-manylinux2010_x86_64.AppImage
 
         # Test
-        #wget https://github.com/jonathanperret/python-appimage/releases/download/python3.13/python3.13.3-cp313-cp313-manylinux2014_x86_64.AppImage
+        wget https://github.com/jonathanperret/python-appimage/releases/download/python3.13/python3.13.3-cp313-cp313-manylinux2014_x86_64.AppImage
         #wget https://github.com/ryuuzaki42/Python_to_make_AppImage/releases/download/3.12.10/python3.12.10-cp312-cp312-manylinux_2_28_x86_64.AppImage
 
         fileName=$(ls python3*.AppImage)
@@ -75,11 +61,11 @@ jobs:
         cd squashfs-root/opt/python3*/bin/
         pwd; ls -lah
 
-        ldd --version
+        ../../../../conty.sh ldd --version
 
-        ./pip3.* install ffsubsync
+        ../../../../conty.sh ./pip3.* install ffsubsync
 
-        ./python3.* -m pip install --upgrade pip
+        ./pip3.* -m pip install --upgrade pip
 
     - name: Make AppImage
       run: |
