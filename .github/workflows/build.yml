@@ -72,7 +72,8 @@ jobs:
       run: |
         set -x
         version=$(grep -o "FFsubsync:.*" README.md | cut -d ' ' -f2)
-        echo "FFsubsync version: $version"
+        tag=2 #1
+        echo "FFsubsync version: $version Tag: $tag"
 
         cd squashfs-root/
         pwd; ls -lah
@@ -92,12 +93,10 @@ jobs:
         sed -i "s/Name=.*/Name=FFsubsync/" FFsubsync.desktop
         sed -i "s/Icon=python/Icon=FFsubsync/" FFsubsync.desktop
         cat FFsubsync.desktop
-
         pwd; ls -lah
 
         cd ../
         mv AppRun squashfs-root/
-
         mv README.md squashfs-root/
         ls -lah squashfs-root/
 
@@ -105,7 +104,7 @@ jobs:
         chmod 0755 squashfs-root/
 
         #ARCH=x86_64 ./appimagetool-x86_64.AppImage squashfs-root/
-        ARCH=x86_64 VERSION="${version}-1_JB" ./appimagetool-x86_64.AppImage squashfs-root/
+        ARCH=x86_64 VERSION="${version}-${tag}_JB" ./appimagetool-x86_64.AppImage squashfs-root/
         pwd; ls -lah
 
         fileName=$(ls FFsubsync*.AppImage)
