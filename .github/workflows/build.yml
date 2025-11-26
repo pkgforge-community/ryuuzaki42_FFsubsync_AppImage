@@ -25,7 +25,8 @@ jobs:
       run: |
         set -x
         # Conty 1.18.6 - last version with Glibc 2.33, see pkg_list.txt - https://github.com/Kron4ek/Conty/releases/tag/1.18.6
-        wget https://github.com/Kron4ek/Conty/releases/download/1.18.6/conty.sh
+        #wget -q https://github.com/Kron4ek/Conty/releases/download/1.18.6/conty.sh
+        wget -q https://github.com/ryuuzaki42/Python_to_make_AppImage/releases/download/07/conty.sh
         chmod +x conty.sh
         pwd; ls -lah
 
