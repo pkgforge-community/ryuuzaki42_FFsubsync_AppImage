@@ -49,7 +49,8 @@ jobs:
 
         # Test
         #wget https://github.com/ryuuzaki42/Python_to_make_AppImage/releases/download/3.12.10/python3.12.10-cp312-cp312-manylinux_2_28_x86_64.AppImage
-        wget https://github.com/jonathanperret/python-appimage/releases/download/python3.13/python3.13.3-cp313-cp313-manylinux2014_x86_64.AppImage
+        #wget https://github.com/ryuuzaki42/Python_to_make_AppImage/releases/download/06/python3.13.3-cp313-cp313-manylinux2014_x86_64.AppImage
+        wget https://github.com/niess/python-appimage/releases/download/python3.14/python3.14.0-cp314-cp314-manylinux_2_28_x86_64.AppImage
 
         fileName=$(ls python3*.AppImage)
         chmod +x "$fileName"
