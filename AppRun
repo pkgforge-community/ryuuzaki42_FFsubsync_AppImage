@@ -12,16 +12,16 @@ if [ "$prog_name" == "" ]; then # Set ffs if none is passed
     prog_name="ffs"
 fi
 
-# echo "$@" # All parameters
+#echo "$@" # All parameters
 shift # Remove the first arg from the "$@"
-# echo "$@" # All parameters except first one
+#echo "$@" # All parameters except first one
 
 if [ $count_Paramets -lt 5 ]; then # If has less then 5 parameters
     echo "  Examples of run:"
     echo "      ffs video.mp4 -i unsynchronized.srt -o synchronized.srt"
     echo "      ffsubsync reference.srt -i unsynchronized.srt -o synchronized.srt"
 
-    echo -e "\nRunning: $(ls $HERE/opt/python3.*/bin/$prog_name) $@"
+    echo -e "\nRunning: $(ls $HERE/opt/python3.*/bin/$prog_name) $@\n"
     "$HERE"/opt/python3.*/bin/"$prog_name" "$@"
 else
     # Add the current directory, $PWD, to the 3 parameters with files
