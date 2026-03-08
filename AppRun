@@ -1,5 +1,5 @@
 #!/bin/bash
-echo -e "\nRunning ffsubsync: $@"
+echo -e "\nRunning FFsubsync: $@"
 HERE="$(dirname "$(readlink -f "${0}")")"
 
 count_Paramets=$#
@@ -12,9 +12,9 @@ if [ "$prog_name" == "" ]; then # Set ffs if none is passed
     prog_name="ffs"
 fi
 
-# echo "$@"; # All parameters
+# echo "$@" # All parameters
 shift # Remove the first arg from the "$@"
-# echo "$@"; # All parameters except first one
+# echo "$@" # All parameters except first one
 
 if [ $count_Paramets -lt 5 ]; then # If has less then 5 parameters
     echo "  Examples of run:"
