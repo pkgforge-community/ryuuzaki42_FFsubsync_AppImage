@@ -83,7 +83,7 @@ jobs:
 
         #find . | grep -E "\.png|\.jpg|\.svg"
         rm python.png
-        wget https://github.com/smacke/ffsubsync/blob/master/resources/img/subsync.png -O FFsubsync.png
+        wget https://raw.githubusercontent.com/smacke/ffsubsync/refs/heads/master/resources/img/subsync.png -O FFsubsync.png
 
         #find . | grep ".desktop"
         mv python*.desktop FFsubsync.desktop
