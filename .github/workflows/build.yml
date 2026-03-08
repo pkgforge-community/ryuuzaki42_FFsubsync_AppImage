@@ -81,9 +81,9 @@ jobs:
         #rm -v python* .DirIcon AppRun
         rm -v .DirIcon AppRun
 
-        #find . | grep ".png"
-        #find . | grep ".svg"
-        mv python.png FFsubsync.png
+        #find . | grep -E "\.png|\.jpg|\.svg"
+        rm python.png
+        wget https://github.com/smacke/ffsubsync/blob/master/resources/img/subsync.png -O FFsubsync.png
 
         #find . | grep ".desktop"
         mv python*.desktop FFsubsync.desktop
@@ -96,8 +96,7 @@ jobs:
         pwd; ls -lah
 
         cd ../
-        mv AppRun squashfs-root/
-        mv README.md squashfs-root/
+        cp AppRun README.md squashfs-root/
         ls -lah squashfs-root/
 
         # Wrong permissions on AppDir, please set it to 0755 and try again
