@@ -1,6 +1,10 @@
 
 # FFsubsync_AppImage
 
+FFsubsync is a language-agnostic automatic synchronization of subtitles with video, so that subtitles are aligned to the correct starting point within the video.
+
+https://github.com/smacke/ffsubsync
+
 ## Repository: https://github.com/ryuuzaki42/FFsubsync_AppImage
      FFsubsync: 0.4.31
 
@@ -12,8 +16,6 @@
     ./FFsubsync-*_JB-x86_64.AppImage subsync
 
     ./FFsubsync-*_JB-x86_64.AppImage ffsubsync
-
-    ./FFsubsync-*_JB-x86_64.AppImage ffsubsync -v
 
 # Examples:
     # Sync from video file
@@ -40,7 +42,6 @@
 ```
 
 ---
-https://github.com/smacke/ffsubsync
 
 https://pypi.org/project/ffsubsync/
 
