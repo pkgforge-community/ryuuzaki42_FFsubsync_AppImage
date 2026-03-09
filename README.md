@@ -18,27 +18,27 @@ https://github.com/smacke/ffsubsync
     ./FFsubsync-*_JB-x86_64.AppImage ffsubsync
 
 # Examples:
-    # Sync from video file
-        ./FFsubsync-*_JB-x86_64.AppImage ffs video.mp4 -i unsynchronized.srt -o synchronized.srt
+  # Sync from video file
+    ./FFsubsync-*_JB-x86_64.AppImage ffs video.mp4 -i unsynchronized.srt -o synchronized.srt
 
-        ./FFsubsync-*_JB-x86_64.AppImage ffs video.mkv -i unsynchronized.srt -o synchronized.srt
+    ./FFsubsync-*_JB-x86_64.AppImage ffs video.mkv -i unsynchronized.srt -o synchronized.srt
 
-    # Sync from subtitle reference file
-        ./FFsubsync-*_JB-x86_64.AppImage ffsubsync reference.srt -i unsynchronized.srt -o synchronized.srt
+  # Sync from subtitle reference file
+    ./FFsubsync-*_JB-x86_64.AppImage ffsubsync reference.srt -i unsynchronized.srt -o synchronized.srt
 
 # For help:
-    ./FFsubsync-*_JB-x86_64.AppImage ffs -h
+  ./FFsubsync-*_JB-x86_64.AppImage ffs -h
 
-    ./FFsubsync-*_JB-x86_64.AppImage subsync -h
+  ./FFsubsync-*_JB-x86_64.AppImage subsync -h
 
-    ./FFsubsync-*_JB-x86_64.AppImage ffsubsync -h
+  ./FFsubsync-*_JB-x86_64.AppImage ffsubsync -h
 
 # For version:
-    ./FFsubsync-*_JB-x86_64.AppImage ffs -v
+  ./FFsubsync-*_JB-x86_64.AppImage ffs -v
 
-    ./FFsubsync-*_JB-x86_64.AppImage subsync -v
+  ./FFsubsync-*_JB-x86_64.AppImage subsync -v
 
-    ./FFsubsync-*_JB-x86_64.AppImage ffsubsync -v
+  ./FFsubsync-*_JB-x86_64.AppImage ffsubsync -v
 ```
 
 ---
