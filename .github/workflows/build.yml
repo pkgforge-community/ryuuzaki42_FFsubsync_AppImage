@@ -17,7 +17,7 @@ jobs:
     # ubuntu-latest or 22.04 will require GLIBC_2.34
 
     steps:
-    - uses: actions/checkout@main
+    - uses: actions/checkout@v6
     - name: Install fuse and libfuse2
       run: sudo apt install fuse libfuse2
 
@@ -98,11 +98,6 @@ jobs:
         Terminal=true' > FFsubsync.desktop
         chmod +x FFsubsync.desktop
         cat FFsubsync.desktop
-
-        #sed -i "s/Name=.*/Name=FFsubsync-$version/" FFsubsync.desktop
-        sed -i "s/Name=.*/Name=FFsubsync/" FFsubsync.desktop
-        sed -i "s/Icon=python/Icon=FFsubsync/" FFsubsync.desktop
-        cat FFsubsync.desktop
         pwd; ls -lah
 
         cd ../
@@ -122,15 +117,12 @@ jobs:
         pwd; ls -lah
 
     # https://github.com/marketplace/actions/upload-to-github-release
-    - uses: xresloader/upload-to-github-release@main
+    - uses: xresloader/upload-to-github-release@v1
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
           file: "FFsubsync*.AppImage; FFsubsync*.zsync; FFsubsync*.md5"
-          #delete_file: "random-name-*.txt;random-*.txt"
-          release_id: ${{ steps.create_release.outputs.id }}
           #overwrite: true
           verbose: true
-          #tags: true
           draft: false
           default_release_name: "FFsubsync V in AppImage"
