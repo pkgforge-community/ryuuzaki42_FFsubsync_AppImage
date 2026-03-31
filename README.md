@@ -1,7 +1,7 @@
 
 # FFsubsync_AppImage
 
-FFsubsync is a language-agnostic automatic synchronization of subtitles with video, so that subtitles are aligned to the correct starting point within the video.
+FFsubsync is a language-agnostic automatic synchronization of subtitles with video, so that subtitles are aligned to the correct starting point within the video
 
 https://github.com/smacke/ffsubsync
 
