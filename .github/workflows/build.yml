@@ -12,9 +12,6 @@ jobs:
     name: Build
     runs-on: ubuntu-22.04
     #runs-on: ubuntu-latest
-    # ImportError: /lib64/libc.so.6: version `GLIBC_2.34' not found (required by 
-    # /tmp/.mount_FFsub*/opt/python3.12/lib/python3.12/site-packages/_webrtcvad.cpython-312-x86_64-linux-gnu.so)
-    # ubuntu-latest or 22.04 will require GLIBC_2.34
 
     steps:
     - uses: actions/checkout@v6
@@ -25,6 +22,9 @@ jobs:
       run: |
         set -x
         # Conty 1.18.6 - last version with Glibc 2.33, see pkg_list.txt - https://github.com/Kron4ek/Conty/releases/tag/1.18.6
+        # To resolve the error: import _webrtcvad
+        # ImportError: /lib64/libc.so.6: version `GLIBC_2.34' not found (required by .../_webrtcvad.cpython-310-x86_64-linux-gnu.so)
+
         #wget -q https://github.com/Kron4ek/Conty/releases/download/1.18.6/conty.sh
         wget -q https://github.com/ryuuzaki42/Python_to_make_AppImage/releases/download/07/conty.sh
         chmod +x conty.sh
@@ -36,7 +36,6 @@ jobs:
         #wget -q https://github.com/AppImage/AppImageKit/releases/download/13/appimagetool-x86_64.AppImage
         version_go_appimage=$(wget -q -O - https://api.github.com/repos/probonopd/go-appimage/releases | grep "\"name.*appimagetool-.*-x86_64.AppImage\"" | head -n 1 | cut -d '-' -f2)
         echo "version_go_appimage: $version_go_appimage"
-
         wget -q "https://github.com/probonopd/go-appimage/releases/download/continuous/appimagetool-$version_go_appimage-x86_64.AppImage" -O appimagetool-x86_64.AppImage
         chmod +x appimagetool-x86_64.AppImage
         pwd; ls -lah
@@ -44,13 +43,9 @@ jobs:
     - name: Get Pyhton AppImage
       run: |
         set -x
-        ## OK
+        # OK
         #wget -q https://github.com/niess/python-appimage/releases/download/python3.10/python3.10.6-cp310-cp310-manylinux2010_x86_64.AppImage
         wget -q https://github.com/ryuuzaki42/Python_to_make_AppImage/releases/download/06/python3.13.3-cp313-cp313-manylinux2014_x86_64.AppImage
-
-        ## Error
-        #wget -q https://github.com/niess/python-appimage/releases/download/python3.14/python3.14.0-cp314-cp314t-manylinux_2_28_x86_64.AppImage
-
         fileName=$(ls python3*.AppImage)
         chmod +x "$fileName"
         ./"$fileName" --appimage-extract
@@ -71,22 +66,19 @@ jobs:
     - name: Make AppImage
       run: |
         set -x
+        tag=2 #1
         version=$(grep -o "FFsubsync:.*" README.md | cut -d ' ' -f2)
-        tag=1 #1
-        echo "FFsubsync version: $version Tag: $tag"
+        echo "FFsubsync version: $version - Tag: $tag"
 
         cd squashfs-root/
         pwd; ls -lah
 
-        #rm -v python* .DirIcon AppRun
-        rm -v .DirIcon AppRun
+        rm -v python.png python*.desktop .DirIcon AppRun
 
         #find . | grep -E "\.png|\.jpg|\.svg"
-        rm python.png
-        wget https://raw.githubusercontent.com/smacke/ffsubsync/refs/heads/master/resources/img/subsync.png -O FFsubsync.png
+        wget -q https://raw.githubusercontent.com/smacke/ffsubsync/refs/heads/master/resources/img/subsync.png -O FFsubsync.png
 
         #find . | grep ".desktop"
-        rm python*.desktop
 
         echo '[Desktop Entry]
         Type=Application
@@ -107,7 +99,6 @@ jobs:
         # Wrong permissions on AppDir, please set it to 0755 and try again
         chmod 0755 squashfs-root/
 
-        #ARCH=x86_64 ./appimagetool-x86_64.AppImage squashfs-root/
         ARCH=x86_64 VERSION="${version}-${tag}_JB" ./appimagetool-x86_64.AppImage squashfs-root/
         pwd; ls -lah
 
@@ -116,7 +107,6 @@ jobs:
         md5sum "$fileName" > "${fileName}.md5"
         pwd; ls -lah
 
-    # https://github.com/marketplace/actions/upload-to-github-release
     - uses: xresloader/upload-to-github-release@v1
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
