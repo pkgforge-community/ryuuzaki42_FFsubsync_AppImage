@@ -21,10 +21,9 @@ https://github.com/smacke/ffsubsync
     # Sync from video file
         ./FFsubsync-*_JB-x86_64.AppImage ffs video.mp4 -i unsynchronized.srt -o synchronized.srt
 
-        ./FFsubsync-*_JB-x86_64.AppImage ffs video.mkv -i unsynchronized.srt -o synchronized.srt
-
     # Sync from subtitle reference file
-        ./FFsubsync-*_JB-x86_64.AppImage ffsubsync reference.srt -i unsynchronized.srt -o synchronized.srt
+        ./FFsubsync-*_JB-x86_64.AppImage ffsubsync reference.srt -i unsynchronized.srt \
+            -o synchronized.srt
 
 # For help:
     ./FFsubsync-*_JB-x86_64.AppImage ffs -h
