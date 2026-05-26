@@ -65,7 +65,7 @@ jobs:
     - name: Make AppImage
       run: |
         set -x
-        tag=2 #1
+        tag=1 #1
         version=$(grep -o "FFsubsync:.*" README.md | cut -d ' ' -f2)
         echo "FFsubsync version: $version - Tag: $tag"
 
