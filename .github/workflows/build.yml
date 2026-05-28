@@ -72,6 +72,13 @@ jobs:
         cd squashfs-root/
         pwd; ls -lah
 
+        ## Add libxcb-cursor from Ubuntu
+        cd usr/lib/
+        wget -q https://github.com/ryuuzaki42/Calibre_AppImage/releases/download/main-00000000/libxcb-cursor.so.0.0.0
+        ln -s libxcb-cursor.so.0.0.0 libxcb-cursor.so.0
+        cd ../../
+        pwd; ls -lah
+
         rm -v python.png python*.desktop .DirIcon AppRun # Remove folders/files not needed
 
         #find . | grep -E "\.png|\.jpg|\.svg"
