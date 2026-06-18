@@ -6,7 +6,7 @@ FFsubsync is a language-agnostic automatic synchronization of subtitles with vid
 https://github.com/smacke/ffsubsync
 
 ## Repository: https://github.com/ryuuzaki42/FFsubsync_AppImage
-    FFsubsync: 0.4.32
+    FFsubsync: 0.5.0
 
 ## Usage
 ```
